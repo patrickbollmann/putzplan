@@ -1,3 +1,3 @@
 # putzplan
-Fairer Putzplan um die WG sauber zu halten
+Fairer Putzplan mit Datenbank
 https://patrickbollmann.de/putzplan/
