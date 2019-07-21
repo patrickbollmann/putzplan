@@ -38,12 +38,19 @@ print(schedule)
 
 
 sout = ""
-for i in schedule:  ##Konkartiniere string mit putzplan ids
+for i in schedule:  #Konkartiniere string mit putzplan ids
     sout+= str(i) + ", "
 sout = sout[:-2]
 print(sout)
     #Schreibe putzplan in db
 cur.execute("INSERT INTO `schedule` (`scheduleid`, `date`, `wohnzimmer`, `kueche`, `Treppenhaus`, `bad`, `toiletten`, `muell`, `keller`) VALUES (NULL, CURRENT_TIMESTAMP," + sout + ");")
+conn.commit()
+
+cur.execute("SELECT scheduleid FROM `schedule` WHERE date = (SELECT MAX(date) FROM schedule)")
+for row in cur:
+    scheduleid = row[0]
+#schreibe neuen eintrag in done
+cur.execute("INSERT INTO `done` (`scheduleid`, `bad`, `kueche`, `muell`, `toiletten`, `wohnzimmer`, `treppenhaus`, `keller`) VALUES ('"+ str(scheduleid) +"', '0', '0', '0', '0', '0', '0', '0');")
 conn.commit()
 
 cur.close()
