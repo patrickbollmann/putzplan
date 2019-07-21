@@ -13,7 +13,6 @@
         $result = $mysqli->query($sql);
 		while ($row = $result->fetch_assoc()) {
 			$scheduleid = $row["scheduleid"];
-			echo $scheduleid;
 		}
         $sql = "SELECT name FROM person WHERE personid = (SELECT wohnzimmer FROM `schedule` WHERE date = (SELECT MAX(date) FROM schedule))"; //hole aktuellen Putzplan
         $result = $mysqli->query($sql);
@@ -91,6 +90,8 @@
 		{
 		    if ($x==1){
 				return ✅;
+			}if ($x==2){
+				return ⚠️;
 			}else{
 				return ❌;
 			}
@@ -158,7 +159,25 @@
                 </select>
             </div>
 			<br>
-	        <button class="btn btn-primary btn-lg mb-3" type="submit">Abschicken</button>
+	        <button class="btn btn-primary btn-lg mb-3" type="submit">Als erledigt markieren</button>
+	    </form>
+		<br>
+        <form action="undone.php" method="post">
+            <h2>Jemand hat seine Aufgabe nicht richtig erledigt?:</h2>
+            <div class="mb-3">
+                <label>Betroffener Bereich:</label>
+                <select class="custom-select" name="location">
+                    <option>bad</option>
+                    <option>kueche</option>
+                    <option>keller</option>
+					<option>muell</option>
+					<option>toiletten</option>
+					<option>treppenhaus</option>
+					<option>wohnzimmer</option>
+                </select>
+            </div>
+			<br>
+	        <button class="btn btn-primary btn-lg mb-3" type="submit">Meckern</button>
 	    </form>
 		
     </body>
