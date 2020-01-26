@@ -1,5 +1,4 @@
 <?php
-echo "test";
 	header('Content-Type: text/plain; charset=utf-8');
 	
     $mysqli = new mysqli("localhost", "user", "pass", "putzplan");
@@ -7,13 +6,11 @@ echo "test";
 
     if ($mysqli->connect_errno) {
         die("Verbindung fehlgeschlagen: " . $mysqli->connect_error);
-    }
-    
-    $location = $_POST["location"];
-	$anmerkung = $_POST["anmerkung"];
+    }    
 	
-	// update anmerkungen
-    $sql = "UPDATE location SET Done = 2, Beschwerde = '".$anmerkung."' WHERE Name = '".$location."'";
+	$name = $_POST["name"];
+	
+	$sql = "UPDATE person SET active = 0 WHERE name = '".$name."'";
     $stmt = $mysqli->stmt_init();
 
     if ($stmt->prepare($sql)) {
@@ -22,13 +19,12 @@ echo "test";
         
 		if ($OK) {
             $adresse_id = $mysqli->insert_id;
-            echo "Erfolg\r\n";
-			header('Location: https://patrickbollmann.de/putzplan/');
+            echo "Erfolgreich für die nächste Woche abgemeldet\r\n";
         } else {
             echo $stmt->error . "\r\n";
         }
     }
-
-        $mysqli->close();
+    $mysqli->close();
     
 ?>
+	
