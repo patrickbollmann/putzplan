@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Erstellungszeit: 21. Jul 2019 um 15:32
--- Server-Version: 5.7.26-0ubuntu0.18.04.1
--- PHP-Version: 7.2.20-1+ubuntu18.04.1+deb.sury.org+1
+-- Erstellungszeit: 26. Jan 2020 um 15:35
+-- Server-Version: 5.7.28-0ubuntu0.18.04.4
+-- PHP-Version: 7.2.26-1+ubuntu18.04.1+deb.sury.org+1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -23,24 +23,30 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `done`
+-- Tabellenstruktur für Tabelle `location`
 --
 
-CREATE TABLE `done` (
-  `scheduleid` int(8) NOT NULL,
-  `bad` int(11) NOT NULL DEFAULT '0',
-  `kueche` int(11) NOT NULL DEFAULT '0',
-  `muell` int(11) NOT NULL DEFAULT '0',
-  `toiletten` int(11) NOT NULL DEFAULT '0',
-  `wohnzimmer` int(11) NOT NULL DEFAULT '0'
+CREATE TABLE `location` (
+  `ID` int(11) NOT NULL,
+  `Name` text NOT NULL,
+  `Wert` int(11) NOT NULL,
+  `User` varchar(20) NOT NULL,
+  `Done` int(11) NOT NULL,
+  `Beschwerde` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Daten für Tabelle `done`
+-- Daten für Tabelle `location`
 --
 
-INSERT INTO `done` (`scheduleid`, `bad`, `kueche`, `muell`, `toiletten`, `wohnzimmer`) VALUES
-(1, 0, 0, 0, 0, 0);
+INSERT INTO `location` (`ID`, `Name`, `Wert`, `User`, `Done`, `Beschwerde`) VALUES
+(1, 'Wohnzimmer', 8, 'Patrick', 1, ''),
+(2, 'Kueche', 8, 'Laura', 1, ''),
+(3, 'Treppenhaus', 6, 'Patrick', 1, ''),
+(4, 'Geschirrtuecher', 5, 'Patrick', 1, ''),
+(5, 'Toiletten', 6, 'Mayra', 1, ''),
+(6, 'Muell', 5, 'Maike', 1, ''),
+(7, 'Bad', 6, 'Philipp', 0, '');
 
 -- --------------------------------------------------------
 
@@ -61,46 +67,21 @@ CREATE TABLE `person` (
 --
 
 INSERT INTO `person` (`personid`, `name`, `score`, `penalty`, `active`) VALUES
-(1, 'Patrick', 21, 0, 1),
-(2, 'Philipp', 19, 0, 1),
-(3, 'Mayra', 23, 0, 1),
-(4, 'Maike', 23, 0, 1),
-(5, 'Laura', 0, 0, 0);
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `schedule`
---
-
-CREATE TABLE `schedule` (
-  `scheduleid` int(8) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `wohnzimmer` int(11) NOT NULL,
-  `kueche` int(11) NOT NULL,
-  `Treppenhaus` int(11) NOT NULL,
-  `bad` int(11) NOT NULL,
-  `toiletten` int(11) NOT NULL,
-  `muell` int(11) NOT NULL,
-  `keller` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Daten für Tabelle `schedule`
---
-
-INSERT INTO `schedule` (`scheduleid`, `date`, `wohnzimmer`, `kueche`, `Treppenhaus`, `bad`, `toiletten`, `muell`, `keller`) VALUES
-(50, '2019-07-21 13:31:20', 1, 4, 2, 3, 1, 3, 4);
+(1, 'Patrick', 287, 2, 1),
+(2, 'Philipp', 274, 4, 1),
+(3, 'Mayra', 276, 1, 1),
+(4, 'Maike', 275, 1, 1),
+(5, 'Laura', 274, 1, 1);
 
 --
 -- Indizes der exportierten Tabellen
 --
 
 --
--- Indizes für die Tabelle `done`
+-- Indizes für die Tabelle `location`
 --
-ALTER TABLE `done`
-  ADD PRIMARY KEY (`scheduleid`);
+ALTER TABLE `location`
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indizes für die Tabelle `person`
@@ -109,20 +90,14 @@ ALTER TABLE `person`
   ADD PRIMARY KEY (`personid`);
 
 --
--- Indizes für die Tabelle `schedule`
---
-ALTER TABLE `schedule`
-  ADD PRIMARY KEY (`scheduleid`);
-
---
 -- AUTO_INCREMENT für exportierte Tabellen
 --
 
 --
--- AUTO_INCREMENT für Tabelle `schedule`
+-- AUTO_INCREMENT für Tabelle `location`
 --
-ALTER TABLE `schedule`
-  MODIFY `scheduleid` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+ALTER TABLE `location`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
