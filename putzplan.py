@@ -17,7 +17,7 @@ inactive = db.query("SELECT personid, name FROM `person` WHERE active = 0")  #w√
 print("inaktiv sind:")
 for row in inactive:
     print(row["name"])
-    db.query("UPDATE person SET score = score +10, active =1 WHERE personid =" + row["personid"])
+    db.query("UPDATE person SET score = score +10, active =1 WHERE personid =" + str(row["personid"]))
    
 #Plan erstellen
 locationquery = db.query("SELECT Name, Wert FROM `location` ORDER BY Wert DESC")
