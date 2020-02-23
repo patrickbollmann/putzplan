@@ -20,6 +20,13 @@
 				return ❌;
 			}
 		}
+		$abgemeldet = " ";
+		$sql = "SELECT name FROM person WHERE active = 0";
+		$result = $mysqli->query($sql);
+		while ($row = $result->fetch_assoc()){
+			$abgemeldet = $abgemeldet.$row["name"].", ";
+		}
+		$abgemeldet = substr($abgemeldet, 0, -2); //komma und Leer am ende entfernen
 
 		
 
@@ -76,6 +83,9 @@
 		    </tbody>
 		  </table>
 		</div>
+		<br>
+		Für die nächste Woche abgemeldet sind: <h6><?php echo $abgemeldet; ?></h6>
+		<br>
 		<div class ="row">
 		<div class="col-md-6 col-12 mb-3">
         <form action="done.php" method="post">
