@@ -21,7 +21,7 @@
 			}
 		}
 		$abgemeldet = " ";
-		$sql = "SELECT name FROM person WHERE active = 0";
+		$sql = "SELECT name FROM person WHERE active < 1";
 		$result = $mysqli->query($sql);
 		while ($row = $result->fetch_assoc()){
 			$abgemeldet = $abgemeldet.$row["name"].", ";
@@ -119,6 +119,13 @@
 			  		}
 					?>
                 </select>
+				<label>Wie lange möchtest du dich abmelden?</label>
+				<select class="custom-select" name="weeks">
+					  <option>Eine Woche</option>
+					  <option>Zwei Wochen</option>
+					  <option>Drei Wochen</option>
+					  <option>Vier Wochen</option>
+				</select>
 			<br><br>
 	        <button class="btn btn-primary btn-lg mb-3" type="submit">Abmelden</button>
 	    </form>

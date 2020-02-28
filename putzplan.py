@@ -25,8 +25,8 @@ for row in locationquery:
         print(location+": "+username)
         
 #inaktive nutzer bekommen score +10
-inactive = db.query("SELECT personid, name FROM `person` WHERE active = 0")  #wähle inaktive nutzer
+inactive = db.query("SELECT personid, name FROM `person` WHERE active < 1")  #wähle inaktive nutzer
 print("inaktiv sind:")
 for row in inactive:
     print(row["name"])
-    db.query("UPDATE person SET score = score +10, active =1 WHERE personid =" + str(row["personid"]))
+    db.query("UPDATE person SET score = score +10, active = active +1 WHERE personid =" + str(row["personid"]))
