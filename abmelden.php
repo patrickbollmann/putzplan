@@ -11,19 +11,19 @@
     $name = $_POST["name"];
     $amount = $_POST["amount"];
     if($amount = "Eine Woche"){
-        $weeks = 1;
+        $weeks = 0;
     }
     if($amount = "Zwei Wochen"){
-        $weeks = 2;
+        $weeks = -1;
     }
     if($amount = "Drei Wochen"){
-        $weeks = 3;
+        $weeks = -2;
     }
     if($amount = "Vier Wochen"){
-        $weeks = 4;
+        $weeks = -3;
     }
 	
-	$sql = "UPDATE person SET active = active -$weeks WHERE name = '".$name."'";
+	$sql = "UPDATE person SET active = $weeks WHERE name = '".$name."'";
     $stmt = $mysqli->stmt_init();
 
     if ($stmt->prepare($sql)) {
