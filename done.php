@@ -2,7 +2,8 @@
 echo "test";
 	header('Content-Type: text/plain; charset=utf-8');
 	
-    $mysqli = new mysqli("localhost", "user", "pass", "putzplan");
+    include "../secret/secret.php";
+    $mysqli = new mysqli("localhost", $dbuser, $dbpass, "putzplan");   
 	$mysqli->set_charset("utf8");
 
     if ($mysqli->connect_errno) {
