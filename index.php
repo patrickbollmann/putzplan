@@ -160,9 +160,9 @@ $abgemeldet = substr($abgemeldet, 0, -2); //komma und Leer am ende entfernen
 					<button class="btn btn-primary btn-lg mb-3" type="submit">Meckern</button>
 				</form>
 				<form action="abbauen.php" method="post">
-					<h2>Ich möchte eine Strafe abarbeiten..</h2>
+					<h2>Ich möchte Strafen abarbeiten..</h2>
 					<label>Name:</label>
-					<select class="custom-select" name="location">
+					<select class="custom-select" name="name">
 						<option></option>
 						<?php
 						$sql = "SELECT Name FROM person";
@@ -174,12 +174,15 @@ $abgemeldet = substr($abgemeldet, 0, -2); //komma und Leer am ende entfernen
 					</select>
 					<br>
 					<label>Welche Zusatzaufgabe möchtest du machen?</label>
-					<select class="custom-select" name="amount">
+					<select class="custom-select" name="location">
 						<option></option>
-						<option>Backofen</option>
-						<option>Keller</option>
-						<option>Terrasse</option>
-						<option>Party aufgeräumt</option>
+						<?php
+						$sql = "SELECT * FROM extraaufgaben";
+						$result = $mysqli->query($sql);
+						while ($row = $result->fetch_assoc()) :
+						?>
+							<option><?php echo $row["Name"]." (".$row["Price"]." Strafen)"; ?></option>
+						<?php endwhile; ?>
 					</select>
 					<br><br>
 					<button class="btn btn-primary btn-lg mb-3" type="submit">Strafen abbauen</button>
