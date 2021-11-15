@@ -1,9 +1,9 @@
 # Putzplan
 Fairer Putzplan mit Datenbank
 
-Die Aufteilung geschieht nach einem Score. Dieser Score erhöht sich mit jedem geputzten Bereich. Verschiedene Bereiche geben unterschiedlich viel Score -> wer am wenigsten geputzt hat muss am meisten machen um den Score auszugleichen.
+Die Aufteilung geschieht nach einem Score. Dieser Score erhöht sich mit jedem geputzten Bereich. Verschiedene Bereiche geben unterschiedlich viel Score -> wer am wenigsten geputzt hat muss am meisten machen um den Score auszugleichen. Es gibt spezielle Aufgaben die mit einer Grupper versehen sind. z.B. Bad Mönner wird nur von männern bzw. Gruppe 1 bearbeitet.
 
-Score boni und die einzelnen Bereiche sind in der Datenbank gesetzt
+Score boni, Gruppen und die einzelnen Bereiche sind in der Datenbank gesetzt
 
 
 Montag morgens wird putzplan.py einmal ausgeführt und ein neuer Plan wird erstellt.
